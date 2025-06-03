@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liga Pesqueira Pro - Cartola FC</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #e3672a; color: white; padding: 20px; text-align: center; }
+    .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 200px;
+      margin: 10px;
+      text-align: center;
+      padding: 15px;
+    }
+    .card img { width: 80px; height: 80px; object-fit: contain; margin-bottom: 10px; }
+    .card h3 { margin: 10px 0 5px; font-size: 16px; }
+    .card p { margin: 0; font-size: 14px; color: #555; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Liga Pesqueira Pro - Cartola FC</h1>
+    <p>Clubes participantes da temporada 2025</p>
+  </header>
+  <div class="container" id="clubes-container">
+    <!-- Cards dos clubes serão inseridos aqui -->
+  </div>
+
+  <script>
+    const ids = [295114, 22845712, 1667349, 431514, 272336, 2827906, 18767307, 44845957, 44730884, 47668576,
+                 50359784, 47794095, 1294522, 9441345, 26086353, 10392741, 15915, 299125, 8842639, 19191394,
+                 207131, 2238134, 1646843, 254144, 340238, 8295951, 49122213, 271219, 396913, 390492,
+                 6762375, 47841417, 20953551, 6877095, 1002672, 5249257, 19415623, 1567740, 29174951, 28912126];
+
+    const container = document.getElementById('clubes-container');
+
+    ids.forEach(id => {
+      fetch(`https://api.cartola.globo.com/time/id/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${data.escudo_url}" alt="Escudo">
+            <h3>${data.nome}</h3>
+            <p>${data.nome_cartola}</p>
+          `;
+          container.appendChild(card);
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados do time:', id, error);
+        });
+    });
+  </script>
+</body>
+</html>
