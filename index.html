@@ -1,21 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liga Pesqueira Pro - Cartola FC</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-    header { background: #e3672a; color: white; padding: 20px; text-align: center; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    header { background-color: #e3672a; color: white; padding: 20px; text-align: center; }
     .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
     .card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      width: 200px;
-      margin: 10px;
-      text-align: center;
-      padding: 15px;
+      background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 200px; margin: 10px; text-align: center; padding: 15px;
     }
     .card img { width: 80px; height: 80px; object-fit: contain; margin-bottom: 10px; }
     .card h3 { margin: 10px 0 5px; font-size: 16px; }
@@ -28,28 +24,30 @@
     <p>Clubes participantes da temporada 2025</p>
   </header>
   <div class="container" id="clubes-container">
-    <!-- Cards dos clubes serão inseridos aqui -->
+    <!-- Clubes serão carregados aqui -->
   </div>
 
   <script>
-    // Exemplo: adaptando para estrutura de API externa como a ChoraAPI
-    fetch('https://choraapi.com.br/api/times')
+    // Substitua essa URL pelo seu endpoint da Vercel depois de publicar a API
+    const apiUrl = 'https://cartola-api.vercel.app/api/times';
+
+    fetch(apiUrl)
       .then(response => response.json())
       .then(times => {
         const container = document.getElementById('clubes-container');
-        times.forEach(data => {
+        times.forEach(time => {
           const card = document.createElement('div');
           card.className = 'card';
           card.innerHTML = `
-            <img src="${data.escudo}" alt="Escudo">
-            <h3>${data.nome_time}</h3>
-            <p>${data.nome_cartola}</p>
+            <img src="${time.escudo_url}" alt="Escudo">
+            <h3>${time.nome}</h3>
+            <p>${time.nome_cartola}</p>
           `;
           container.appendChild(card);
         });
       })
       .catch(error => {
-        console.error('Erro ao carregar os times:', error);
+        console.error('Erro ao carregar os dados:', error);
       });
   </script>
 </body>
