@@ -32,30 +32,25 @@
   </div>
 
   <script>
-    const ids = [295114, 22845712, 1667349, 431514, 272336, 2827906, 18767307, 44845957, 44730884, 47668576,
-                 50359784, 47794095, 1294522, 9441345, 26086353, 10392741, 15915, 299125, 8842639, 19191394,
-                 207131, 2238134, 1646843, 254144, 340238, 8295951, 49122213, 271219, 396913, 390492,
-                 6762375, 47841417, 20953551, 6877095, 1002672, 5249257, 19415623, 1567740, 29174951, 28912126];
-
-    const container = document.getElementById('clubes-container');
-
-    ids.forEach(id => {
-      fetch(`https://api.cartola.globo.com/time/id/${id}`)
-        .then(response => response.json())
-        .then(data => {
+    // Exemplo: adaptando para estrutura de API externa como a ChoraAPI
+    fetch('https://choraapi.com.br/api/times')
+      .then(response => response.json())
+      .then(times => {
+        const container = document.getElementById('clubes-container');
+        times.forEach(data => {
           const card = document.createElement('div');
           card.className = 'card';
           card.innerHTML = `
-            <img src="${data.escudo_url}" alt="Escudo">
-            <h3>${data.nome}</h3>
+            <img src="${data.escudo}" alt="Escudo">
+            <h3>${data.nome_time}</h3>
             <p>${data.nome_cartola}</p>
           `;
           container.appendChild(card);
-        })
-        .catch(error => {
-          console.error('Erro ao buscar dados do time:', id, error);
         });
-    });
+      })
+      .catch(error => {
+        console.error('Erro ao carregar os times:', error);
+      });
   </script>
 </body>
 </html>
