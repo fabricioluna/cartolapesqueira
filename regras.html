@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +7,50 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="images/brasao.svg" alt="Brasão da Liga" class="logo">
-    <h1>Liga Pesqueira Pro</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="https://pesqueirapro.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
-        <li><a href="historia.html">História</a></li>
-        <li><a href="clubes.html">Clubes</a></li>
-        <li><a href="campeonatos.html">Campeonatos</a></li>
-        <li><a href="hall_da_fama.html">Hall da Fama</a></li>
-        <li><a href="regras.html">Regras</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div id="menu"></div>
 
-  <main>
-    <section class="destaque">
-      <h2>Regras da Liga</h2>
-      <p>Em breve: regulamento oficial, critérios de pontuação, critérios de desempate e disciplina.</p>
+  <main class="container">
+    <h1>Regulamento Oficial</h1>
+
+    <section>
+      <h2>1. Participação</h2>
+      <p>A liga é composta por 40 clubes fixos divididos em duas divisões: Série A e Série B.</p>
+    </section>
+
+    <section>
+      <h2>2. Sistema de Pontuação</h2>
+      <p>Os pontos são baseados no desempenho no Cartola FC, atualizados automaticamente após cada rodada.</p>
+    </section>
+
+    <section>
+      <h2>3. Competições Internas</h2>
+      <ul>
+        <li>Campeonato Brasileiro (Série A e B)</li>
+        <li>Copa do Brasil</li>
+        <li>Copa do Nordeste</li>
+        <li>Copa Futevôlei</li>
+        <li>Libertadores e Champions League</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Critérios de Desempate</h2>
+      <p>Maior número de vitórias, saldo de pontos, e pontuação acumulada em rodadas-chave.</p>
+    </section>
+
+    <section>
+      <h2>5. Fair Play e Penalidades</h2>
+      <p>Participantes devem manter respeito e conduta ética. Atitudes antiesportivas podem resultar em penalidades, incluindo exclusão.</p>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Liga Pesqueira Pro</p>
-  </footer>
+  <script>
+    // Carrega menu
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("menu").innerHTML = data;
+      });
+  </script>
 </body>
 </html>
