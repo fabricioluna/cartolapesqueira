@@ -1,92 +1,49 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #002060;
-}
-
-/* CABEÇALHO */
-header {
-  background-color: #002060;
-  color: #FFD700;
-  text-align: center;
-  padding: 2em 1em;
-}
-
-.logo {
-  height: 100px;
-  margin-bottom: 10px;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 15px;
-}
-
-nav ul li {
-  display: inline-block;
-  margin: 0 12px;
-}
-
-nav ul li a {
-  color: #FFD700;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1em;
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
-}
-
-/* CONTEÚDO */
-main {
+.tabela-clubes {
   padding: 2em;
 }
 
-.destaque {
-  background-color: #f9f9f9;
-  border-left: 5px solid #002060;
-  padding: 1.5em;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-/* CLUBES */
-.clubes-grid h2 {
-  text-align: center;
-  color: #002060;
-  margin-bottom: 1em;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+.clubes-lista {
+  display: flex;
+  flex-direction: column;
   gap: 1em;
-  justify-items: center;
 }
 
-.clube-card {
-  background: #ffffff;
-  border: 2px solid #002060;
-  border-radius: 10px;
+.clube-linha {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   padding: 1em;
-  text-align: center;
-  width: 120px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,0.04);
 }
 
-.escudo {
-  height: 60px;
-  margin-bottom: 0.5em;
+.escudo img {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
 }
 
-/* RODAPÉ */
-footer {
-  background-color: #002060;
-  color: #FFD700;
+.info {
+  flex: 2;
+  padding-left: 1em;
+}
+
+.tecnico {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.pontos {
+  flex: 1;
+  text-align: right;
+  font-size: 0.9em;
+}
+
+.colocacao {
+  width: 50px;
   text-align: center;
-  padding: 1em;
-  margin-top: 3em;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #002060;
 }
