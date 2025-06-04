@@ -35,10 +35,11 @@
       .then(times => {
         const container = document.getElementById('clubes-container');
         times.forEach(time => {
+          const escudo = time.escudo_url_svg || time.escudo_url;
           const card = document.createElement('div');
           card.className = 'card';
           card.innerHTML = `
-            <img src="${time.escudo_url}" alt="Escudo de ${time.nome}" onerror="this.src='https://via.placeholder.com/80?text=Escudo'">
+            <img src="${escudo}" alt="Escudo de ${time.nome}" onerror="this.src='https://via.placeholder.com/80?text=Escudo'">
             <h3>${time.nome}</h3>
             <p><strong>Cartoleiro:</strong> ${time.nome_cartola}</p>
             <p><strong>Pontos:</strong> ${time.pontos}</p>
