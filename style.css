@@ -1,3 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #001f3f; /* Azul escuro */
+}
+
+/* CABEÇALHO */
+header {
+    background-color: #002060; /* Azul do brasão */
+    color: #FFD700; /* Amarelo */
+    padding: 1em;
+    text-align: center;
+}
+
+header .logo {
+    height: 100px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CONTEÚDO */
+main {
+    padding: 2em;
+}
+
+section {
+    margin-bottom: 2em;
+    background: #f9f9f9;
+    padding: 1.5em;
+    border-left: 5px solid #002060;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* RODAPÉ */
+footer {
+    background-color: #002060;
+    color: #FFD700;
+    text-align: center;
+    padding: 1em;
+    width: 100%;
+}
+
+/* CLUBES */
 .clubes-grid h2 {
     text-align: center;
     color: #002060;
