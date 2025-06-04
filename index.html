@@ -7,7 +7,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="header-container"></div>
+  <header>
+    <img src="images/brasao.svg" alt="Brasão da Liga" class="logo">
+    <h1>Liga Pesqueira Pro</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="https://pesqueirapro.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
+        <li><a href="historia.html">História</a></li>
+        <li><a href="clubes.html">Clubes</a></li>
+        <li><a href="campeonatos.html">Campeonatos</a></li>
+        <li><a href="hall_da_fama.html">Hall da Fama</a></li>
+        <li><a href="regras.html">Regras</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <main>
     <section class="destaque">
@@ -19,13 +33,5 @@
   <footer>
     <p>&copy; 2025 Liga Pesqueira Pro</p>
   </footer>
-
-  <script>
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-container').innerHTML = data;
-      });
-  </script>
 </body>
 </html>
