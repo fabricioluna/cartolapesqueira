@@ -4,10 +4,12 @@
   <nav>
     <ul>
       <li><a href="index.html">Início</a></li>
-      <li><a href="#">Classificação</a></li>
+      <li><a href="https://pesqueirapro.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
+      <li><a href="historia.html">História</a></li>
       <li><a href="clubes.html">Clubes</a></li>
-      <li><a href="#">Estatísticas</a></li>
-      <li><a href="#">Contato</a></li>
+      <li><a href="campeonatos.html">Campeonatos</a></li>
+      <li><a href="hall_da_fama.html">Hall da Fama</a></li>
+      <li><a href="regras.html">Regras</a></li>
     </ul>
   </nav>
 </header>
