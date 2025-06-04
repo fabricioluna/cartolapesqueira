@@ -7,9 +7,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="images/brasao.svg" alt="Brasão da Liga" class="logo">
-    <h1>Liga Pesqueira Pro</h1>
-    <nav>
-      <ul>
-        <li><a href="index.htm
+  <div id="header-container"></div>
+
+  <main>
+    <section class="destaque">
+      <h2>Destaques da Rodada</h2>
+      <p>Em breve: o maior pontuador, confrontos importantes e muito mais!</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Liga Pesqueira Pro</p>
+  </footer>
+
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-container').innerHTML = data;
+      });
+  </script>
+</body>
+</html>
