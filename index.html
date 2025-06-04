@@ -20,11 +20,9 @@
 <body>
   <header>
     <h1>Liga Pesqueira Pro - Cartola FC</h1>
-    <p>Escudos carregados via proxy validado com CORS</p>
+    <p>Escudos carregados via proxy com fallback funcional</p>
   </header>
-  <div class="container" id="clubes-container">
-    <!-- Clubes serão carregados aqui -->
-  </div>
+  <div class="container" id="clubes-container"></div>
 
   <script>
     const apiUrl = 'https://cartola-api-oficial.vercel.app/api/times';
@@ -39,7 +37,8 @@
           const card = document.createElement('div');
           card.className = 'card';
           card.innerHTML = `
-            <img src="${escudoProxied}" alt="Escudo de ${time.nome}" onerror="this.onerror=null; this.src='https://placehold.co/80x80?text=Escudo'">
+            <img src="${escudoProxied}" alt="Escudo de ${time.nome}" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/80x80?text=Escudo'">
             <h3>${time.nome}</h3>
             <p><strong>Cartoleiro:</strong> ${time.nome_cartola}</p>
             <p><strong>Pontos:</strong> ${time.pontos}</p>
