@@ -1,65 +1,53 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clubes - Liga Pesqueira Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="images/brasao.svg" alt="Brasão da Liga" class="logo">
-    <h1>Liga Pesqueira Pro</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="https://pesqueirapro.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
-        <li><a href="historia.html">História</a></li>
-        <li><a href="clubes.html">Clubes</a></li>
-        <li><a href="campeonatos.html">Campeonatos</a></li>
-        <li><a href="hall_da_fama.html">Hall da Fama</a></li>
-        <li><a href="regras.html">Regras</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div id="menu"></div>
 
-  <main>
-    <section class="tabela-clubes">
-      <h2>Clubes da Liga</h2>
-      <div class="clubes-lista">
-        <!-- Linha exemplo, repita para os 40 clubes -->
-        <div class="clube-linha">
-          <div class="escudo"><img src="images/george_fc.png" alt="Escudo George FC"></div>
-          <div class="info">
-            <strong>S.E George Henrique</strong><br>
-            <span class="tecnico">George Henrique</span>
-          </div>
-          <div class="pontos">
-            <div>Última: <strong>66.25</strong></div>
-            <div>Geral: <strong>1005.71</strong></div>
-          </div>
-          <div class="colocacao">1º</div>
-        </div>
-
-        <div class="clube-linha">
-          <div class="escudo"><img src="images/vingadores_75.png" alt="Escudo Vingadores 75"></div>
-          <div class="info">
-            <strong>Vingadores 75</strong><br>
-            <span class="tecnico">Marco Genu</span>
-          </div>
-          <div class="pontos">
-            <div>Última: <strong>60.15</strong></div>
-            <div>Geral: <strong>994.97</strong></div>
-          </div>
-          <div class="colocacao">2º</div>
-        </div>
-        <!-- ... Adicione os demais times aqui ... -->
-      </div>
-    </section>
+  <main class="container">
+    <h1>Clubes Participantes</h1>
+    <div id="clubes-container" class="grid"></div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Liga Pesqueira Pro</p>
-  </footer>
+  <script>
+    // Carrega o menu
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("menu").innerHTML = data;
+      });
+
+    // Carrega dados da API do Cartola
+    const apiUrl = 'https://cartola-api-oficial.vercel.app/api/times';
+
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(times => {
+        const container = document.getElementById('clubes-container');
+        times.forEach(time => {
+          const escudo = time.escudo_url_svg || time.escudo_url;
+          const escudoUrl = escudo
+            ? `https://cartola-api-oficial.vercel.app/api/escudo?url=${encodeURIComponent(escudo)}`
+            : 'https://placehold.co/80x80?text=Escudo';
+
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${escudoUrl}" alt="Escudo de ${time.nome}" onerror="this.onerror=null; this.src='https://placehold.co/80x80?text=Escudo'">
+            <h3>${time.nome}</h3>
+            <p><strong>Cartoleiro:</strong> ${time.nome_cartola}</p>
+            <p><strong>Pontos:</strong> ${time.pontos}</p>
+            <p><strong>Patrimônio:</strong> C$ ${time.patrimonio.toFixed(2)}</p>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(error => console.error('Erro ao carregar times:', error));
+  </script>
 </body>
 </html>
