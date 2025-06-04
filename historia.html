@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +7,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="images/brasao.svg" alt="Brasão da Liga" class="logo">
-    <h1>Liga Pesqueira Pro</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="https://pesqueirapro.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
-        <li><a href="historia.html">História</a></li>
-        <li><a href="clubes.html">Clubes</a></li>
-        <li><a href="campeonatos.html">Campeonatos</a></li>
-        <li><a href="hall_da_fama.html">Hall da Fama</a></li>
-        <li><a href="regras.html">Regras</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div id="menu"></div>
 
-  <main>
-    <section class="destaque">
-      <h2>História da Liga Pesqueira Pro</h2>
-      <p>Em breve: a origem, fundadores, temporadas históricas e marcos da nossa liga.</p>
-    </section>
+  <main class="container">
+    <h1>Nossa História</h1>
+    <p>A Liga Pesqueira Pro nasceu da paixão de amigos pelo Cartola FC e o futebol nacional. Criada com o intuito de promover uma competição saudável e divertida, a liga evoluiu com o tempo, organizando diversas competições internas.</p>
+
+    <p>Composta por 40 clubes fixos, a liga implementou divisões, copas paralelas e um hall da fama para premiar os destaques de cada temporada. Ao longo dos anos, a Liga Pesqueira se tornou referência regional em organização e engajamento entre os cartoleiros.</p>
+
+    <p>Hoje, seguimos crescendo com rankings automáticos, escudos personalizados e uma estrutura completa para gerenciar estatísticas, confrontos e a emoção de cada rodada.</p>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Liga Pesqueira Pro</p>
-  </footer>
+  <script>
+    // Importa menu dinâmico
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("menu").innerHTML = data;
+      });
+  </script>
 </body>
 </html>
