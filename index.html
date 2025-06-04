@@ -7,19 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="images/brasao.svg" alt="Brasão da Liga Pesqueira Pro" class="logo">
-        <h1>Liga Pesqueira Pro</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Classificação</a></li>
-                <li><a href="#">Clubes</a></li>
-                <li><a href="#">Estatísticas</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="header-container"></div>
+
     <main>
         <section class="destaque">
             <h2>Destaques da Rodada</h2>
@@ -30,9 +19,21 @@
             <p>Dados da última rodada aparecerão aqui.</p>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2025 Liga Pesqueira Pro. Todos os direitos reservados.</p>
-    </footer>
-    <script src="script.js"></script>
+
+    <div id="footer-container"></div>
+
+    <script>
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
 </body>
 </html>
