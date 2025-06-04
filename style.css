@@ -1,58 +1,27 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    color: #001f3f; /* Azul escuro para texto */
+.clubes-grid h2 {
+    text-align: center;
+    color: #002060;
+    margin-bottom: 1em;
 }
 
-header {
-    background-color: #002060; /* Azul do brasão */
-    color: #FFD700; /* Amarelo ouro */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1em;
+    justify-items: center;
+}
+
+.clube-card {
+    background: #ffffff;
+    border: 2px solid #002060;
+    border-radius: 10px;
     padding: 1em;
     text-align: center;
+    width: 120px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
 }
 
-header .logo {
-    height: 100px;
-    display: block;
-    margin: 0 auto 10px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #FFD700;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-main {
-    padding: 2em;
-}
-
-section {
-    margin-bottom: 2em;
-    background: #f9f9f9;
-    padding: 1.5em;
-    border-left: 5px solid #002060;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-footer {
-    background-color: #002060;
-    color: #FFD700;
-    text-align: center;
-    padding: 1em;
-    width: 100%;
+.escudo {
+    height: 60px;
+    margin-bottom: 0.5em;
 }
