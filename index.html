@@ -21,7 +21,7 @@
 <body>
   <header>
     <h1>Liga Pesqueira Pro - Cartola FC</h1>
-    <p>Dados atualizados em tempo real pela API oficial</p>
+    <p>Escudos agora carregados via proxy com CORS</p>
   </header>
   <div class="container" id="clubes-container">
     <!-- Clubes serão carregados aqui -->
@@ -35,11 +35,12 @@
       .then(times => {
         const container = document.getElementById('clubes-container');
         times.forEach(time => {
-          const escudo = time.escudo_url_svg || time.escudo_url;
+          const escudoOriginal = time.escudo_url_svg || time.escudo_url;
+          const escudoProxied = `https://cartola-api-oficial.vercel.app/api/escudo?url=${encodeURIComponent(escudoOriginal)}`;
           const card = document.createElement('div');
           card.className = 'card';
           card.innerHTML = `
-            <img src="${escudo}" alt="Escudo de ${time.nome}" onerror="this.src='https://via.placeholder.com/80?text=Escudo'">
+            <img src="${escudoProxied}" alt="Escudo de ${time.nome}" onerror="this.src='https://via.placeholder.com/80?text=Escudo'">
             <h3>${time.nome}</h3>
             <p><strong>Cartoleiro:</strong> ${time.nome_cartola}</p>
             <p><strong>Pontos:</strong> ${time.pontos}</p>
