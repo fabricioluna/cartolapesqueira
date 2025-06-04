@@ -1,55 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Liga Pesqueira Pro - Cartola FC</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    header { background-color: #e3672a; color: white; padding: 20px; text-align: center; }
-    .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
-    .card {
-      background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      width: 220px; margin: 10px; text-align: center; padding: 15px;
-    }
-    .card img { width: 80px; height: 80px; object-fit: contain; margin-bottom: 10px; }
-    .card h3 { margin: 10px 0 5px; font-size: 16px; }
-    .card p { margin: 0; font-size: 14px; color: #555; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga Pesqueira Pro</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Liga Pesqueira Pro - Cartola FC</h1>
-    <p>Escudos carregados via proxy com fallback funcional</p>
-  </header>
-  <div class="container" id="clubes-container"></div>
-
-  <script>
-    const apiUrl = 'https://cartola-api-oficial.vercel.app/api/times';
-
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(times => {
-        const container = document.getElementById('clubes-container');
-        times.forEach(time => {
-          const escudoOriginal = time.escudo_url_svg || time.escudo_url;
-          const escudoProxied = `https://cartola-api-oficial.vercel.app/api/escudo?url=${encodeURIComponent(escudoOriginal)}`;
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <img src="${escudoProxied}" alt="Escudo de ${time.nome}" 
-                 onerror="this.onerror=null; this.src='https://placehold.co/80x80?text=Escudo'">
-            <h3>${time.nome}</h3>
-            <p><strong>Cartoleiro:</strong> ${time.nome_cartola}</p>
-            <p><strong>Pontos:</strong> ${time.pontos}</p>
-            <p><strong>Patrimônio:</strong> C$ ${time.patrimonio.toFixed(2)}</p>
-          `;
-          container.appendChild(card);
-        });
-      })
-      .catch(error => {
-        console.error('Erro ao carregar os dados:', error);
-      });
-  </script>
+    <header>
+        <img src="images/brasao.svg" alt="Brasão da Liga Pesqueira Pro" class="logo">
+        <h1>Liga Pesqueira Pro</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Classificação</a></li>
+                <li><a href="#">Clubes</a></li>
+                <li><a href="#">Estatísticas</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="destaque">
+            <h2>Destaques da Rodada</h2>
+            <p>Em breve: o maior pontuador, confrontos importantes e muito mais!</p>
+        </section>
+        <section class="rodada">
+            <h2>Rodada Atual</h2>
+            <p>Dados da última rodada aparecerão aqui.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Liga Pesqueira Pro. Todos os direitos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
