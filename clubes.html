@@ -7,25 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="images/brasao.svg" alt="Brasão da Liga Pesqueira Pro" class="logo">
-        <h1>Clubes da Liga Pesqueira Pro</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="#">Classificação</a></li>
-                <li><a href="clubes.html">Clubes</a></li>
-                <li><a href="#">Estatísticas</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="header-container"></div>
 
     <main>
         <section class="clubes-grid">
             <h2>Série A e Série B</h2>
             <div class="grid">
-                <!-- Exemplo de clube, repita para os demais -->
+                <!-- Substitua pelos clubes reais -->
                 <div class="clube-card">
                     <img src="images/exemplo_escudo.png" alt="Escudo do Clube" class="escudo">
                     <p>Luna Sport Club</p>
@@ -34,13 +22,25 @@
                     <img src="images/exemplo_escudo.png" alt="Escudo do Clube" class="escudo">
                     <p>Dragões da Vila</p>
                 </div>
-                <!-- Adicione os demais clubes aqui -->
+                <!-- Continue com os 40 clubes -->
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Liga Pesqueira Pro. Todos os direitos reservados.</p>
-    </footer>
+    <div id="footer-container"></div>
+
+    <script>
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
 </body>
 </html>
