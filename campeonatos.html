@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Campeonatos - Liga Pesqueira Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="images/brasao.svg" alt="Brasão da Liga" class="logo">
-    <h1>Liga Pesqueira Pro</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="https://pesqueirapro.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
-        <li><a href="historia.html">História</a></li>
-        <li><a href="clubes.html">Clubes</a></li>
-        <li><a href="campeonatos.html">Campeonatos</a></li>
-        <li><a href="hall_da_fama.html">Hall da Fama</a></li>
-        <li><a href="regras.html">Regras</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div id="menu"></div>
 
-  <main>
-    <section class="destaque">
-      <h2>Campeonatos</h2>
-      <p>Em breve: estrutura da Série A, Série B, Copa do Brasil, Copa Nordeste, Futevôlei, Libertadores e Champions.</p>
+  <main class="container">
+    <h1>Campeonatos da Liga</h1>
+
+    <section>
+      <h2>Campeonato Brasileiro - Série A</h2>
+      <p>20 clubes se enfrentam em turno e returno.</p>
+      <div id="serie-a" class="tabela">Em breve</div>
+    </section>
+
+    <section>
+      <h2>Campeonato Brasileiro - Série B</h2>
+      <p>20 clubes disputando o acesso.</p>
+      <div id="serie-b" class="tabela">Em breve</div>
+    </section>
+
+    <section>
+      <h2>Copa do Brasil</h2>
+      <p>Mata-mata entre os 40 clubes da liga.</p>
+      <div id="copa-brasil">Em breve</div>
+    </section>
+
+    <section>
+      <h2>Copa do Nordeste</h2>
+      <div id="copa-nordeste">Em breve</div>
+    </section>
+
+    <section>
+      <h2>Libertadores e Champions</h2>
+      <div id="copa-internacional">Em breve</div>
+    </section>
+
+    <section>
+      <h2>Copa Futevôlei</h2>
+      <div id="futevolei">Em breve</div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Liga Pesqueira Pro</p>
-  </footer>
+  <script>
+    // Importa o menu dinâmico
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("menu").innerHTML = data;
+      });
+  </script>
 </body>
 </html>
