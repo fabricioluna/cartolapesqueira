@@ -1,37 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hall da Fama - Liga Pesqueira Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="images/brasao.svg" alt="Brasão da Liga" class="logo">
-    <h1>Liga Pesqueira Pro</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="https://pesqueirapro.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
-        <li><a href="historia.html">História</a></li>
-        <li><a href="clubes.html">Clubes</a></li>
-        <li><a href="campeonatos.html">Campeonatos</a></li>
-        <li><a href="hall_da_fama.html">Hall da Fama</a></li>
-        <li><a href="regras.html">Regras</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div id="menu"></div>
 
-  <main>
-    <section class="destaque">
-      <h2>Hall da Fama</h2>
-      <p>Em breve: jogadores, técnicos e clubes lendários da história da Liga Pesqueira Pro.</p>
+  <main class="container">
+    <h1>Hall da Fama</h1>
+    <p>Conheça os maiores destaques da história da Liga Pesqueira Pro.</p>
+
+    <section>
+      <h2>Top Campeões</h2>
+      <ul id="campeoes">
+        <li>Em breve: lista de campeões por temporada</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Maiores Pontuações em uma Rodada</h2>
+      <ul id="recordes">
+        <li>Em breve: recordes históricos de pontuação</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Ranking Histórico</h2>
+      <div id="ranking-historico">
+        <p>Em breve: ranking eterno baseado em desempenho geral</p>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Liga Pesqueira Pro</p>
-  </footer>
+  <script>
+    // Carrega o menu dinâmico
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("menu").innerHTML = data;
+      });
+  </script>
 </body>
 </html>
