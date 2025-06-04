@@ -1,37 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liga Pesqueira Pro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liga Pesqueira Pro - Cartola FC</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="images/brasao.svg" alt="Brasão da Liga" class="logo">
-    <h1>Liga Pesqueira Pro</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="https://pesqueirapro.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
-        <li><a href="historia.html">História</a></li>
-        <li><a href="clubes.html">Clubes</a></li>
-        <li><a href="campeonatos.html">Campeonatos</a></li>
-        <li><a href="hall_da_fama.html">Hall da Fama</a></li>
-        <li><a href="regras.html">Regras</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div id="menu"></div>
 
-  <main>
-    <section class="destaque">
+  <main class="container">
+    <h1>Bem-vindo à Liga Pesqueira Pro</h1>
+    <p>Campeonatos internos, rankings atualizados e escudos dos clubes.</p>
+    <section>
       <h2>Destaques da Rodada</h2>
-      <p>Em breve: o maior pontuador, confrontos importantes e muito mais!</p>
+      <div id="destaques">
+        <p>Em breve</p>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Liga Pesqueira Pro</p>
-  </footer>
+  <script>
+    // Importa header.html dinâmico
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("menu").innerHTML = data;
+      });
+  </script>
 </body>
 </html>
