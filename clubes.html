@@ -3,23 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teste de Carregamento - 1 Time</title>
+  <title>Clubes - Liga Pesqueira Pro</title>
 </head>
 <body>
-  <h1>Teste de Carregamento - 1 Time</h1>
-  <div id="resultado">Carregando...</div>
+  <h1>Clubes Participantes</h1>
+  <ul id="lista-clubes">Carregando times...</ul>
 
   <script>
-    fetch("https://cartola-api-oficial.vercel.app/api/cartola-time/295114")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("resultado").innerText =
-          `Nome do time: ${data.nome}\nTécnico: ${data.nome_cartola}`;
-      })
-      .catch(error => {
-        document.getElementById("resultado").innerText = "Erro ao carregar time.";
-        console.error(error);
-      });
+    const ids = [
+      295114, 22845712, 1667349, 431514, 272336,
+      2827906, 18767307, 44845957, 44730884, 47668576,
+      50359784, 47794095, 1294522, 9441345, 26086353,
+      10392741, 15915, 299125, 8842639, 19191394,
+      207131, 2238134, 1646843, 254144, 340238,
+      8295951, 49122213, 271219, 396913, 390492,
+      6762375, 47841417, 20953551, 6877095, 1002672,
+      5249257, 19415623, 1567740, 29174951, 28912126
+    ];
+
+    const lista = document.getElementById("lista-clubes");
+    lista.innerHTML = ""; // limpa o "Carregando..."
+
+    ids.forEach(id => {
+      fetch(`https://cartola-api-oficial.vercel.app/api/cartola-time/${id}`)
+        .then(res => res.json())
+        .then(data => {
+          const li = document.createElement("li");
+          li.textContent = `${data.nome} — Técnico: ${data.nome_cartola}`;
+          lista.appendChild(li);
+        })
+        .catch(() => {
+          const li = document.createElement("li");
+          li.textContent = `Erro ao carregar time ${id}`;
+          lista.appendChild(li);
+        });
+    });
   </script>
 </body>
 </html>
