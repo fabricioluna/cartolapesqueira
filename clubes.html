@@ -4,12 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clubes - Liga Pesqueira Pro</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Clubes Participantes</h1>
-  <ul id="lista-clubes">Carregando times...</ul>
+  <div id="menu"></div>
+  <main class="container">
+    <h1>Clubes Participantes</h1>
+    <ul id="lista-clubes" class="clubes-lista">Carregando times...</ul>
+  </main>
 
   <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("menu").innerHTML = data;
+      });
+
     const ids = [
       295114, 22845712, 1667349, 431514, 272336,
       2827906, 18767307, 44845957, 44730884, 47668576,
@@ -22,21 +32,23 @@
     ];
 
     const lista = document.getElementById("lista-clubes");
-    lista.innerHTML = ""; // limpa o "Carregando..."
+    lista.innerHTML = "";
 
-    ids.forEach(id => {
+    Promise.all(ids.map(id =>
       fetch(`https://cartola-api-oficial.vercel.app/api/cartola-time/${id}`)
         .then(res => res.json())
-        .then(data => {
-          const li = document.createElement("li");
-          li.textContent = `${data.nome} — Técnico: ${data.nome_cartola}`;
-          lista.appendChild(li);
-        })
-        .catch(() => {
-          const li = document.createElement("li");
-          li.textContent = `Erro ao carregar time ${id}`;
-          lista.appendChild(li);
-        });
+        .catch(() => null)
+    )).then(times => {
+      times = times.filter(Boolean);
+      times.sort((a, b) => a.nome.localeCompare(b.nome));
+
+      times.forEach(time => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${time.nome}</strong> — Técnico: ${time.nome_cartola}`;
+        lista.appendChild(li);
+      });
+    }).catch(() => {
+      lista.innerHTML = "<li>Erro ao carregar os clubes.</li>";
     });
   </script>
 </body>
