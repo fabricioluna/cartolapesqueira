@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,43 +12,41 @@
 
   <main class="container">
     <h1>Clubes Participantes</h1>
-    <div id="clubes-container" class="grid"></div>
+    <ul id="clubes-lista"></ul>
   </main>
 
   <script>
-    // Carrega o menu
+    // Carrega o menu dinâmico
     fetch("header.html")
       .then(res => res.text())
       .then(data => {
         document.getElementById("menu").innerHTML = data;
       });
 
-    // Carrega dados da API do Cartola
-    const apiUrl = 'https://cartola-api-oficial.vercel.app/api/times';
+    // Lista de IDs dos 40 clubes
+    const ids = [
+      295114, 22845712, 1667349, 431514, 272336,
+      2827906, 18767307, 44845957, 44730884, 47668576,
+      50359784, 47794095, 1294522, 9441345, 26086353,
+      10392741, 15915, 299125, 8842639, 19191394,
+      207131, 2238134, 1646843, 254144, 340238,
+      8295951, 49122213, 271219, 396913, 390492,
+      6762375, 47841417, 20953551, 6877095, 1002672,
+      5249257, 19415623, 1567740, 29174951, 28912126
+    ];
 
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then(times => {
-        const container = document.getElementById('clubes-container');
-        times.forEach(time => {
-          const escudo = time.escudo_url_svg || time.escudo_url;
-          const escudoUrl = escudo
-            ? `https://cartola-api-oficial.vercel.app/api/escudo?url=${encodeURIComponent(escudo)}`
-            : 'https://placehold.co/80x80?text=Escudo';
+    const container = document.getElementById("clubes-lista");
 
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <img src="${escudoUrl}" alt="Escudo de ${time.nome}" onerror="this.onerror=null; this.src='https://placehold.co/80x80?text=Escudo'">
-            <h3>${time.nome}</h3>
-            <p><strong>Cartoleiro:</strong> ${time.nome_cartola}</p>
-            <p><strong>Pontos:</strong> ${time.pontos}</p>
-            <p><strong>Patrimônio:</strong> C$ ${time.patrimonio.toFixed(2)}</p>
-          `;
-          container.appendChild(card);
-        });
-      })
-      .catch(error => console.error('Erro ao carregar times:', error));
+    ids.forEach(id => {
+      fetch(`https://api.cartola.globo.com/time/id/${id}`)
+        .then(res => res.json())
+        .then(data => {
+          const item = document.createElement("li");
+          item.textContent = `${data.nome} — Técnico: ${data.nome_cartola}`;
+          container.appendChild(item);
+        })
+        .catch(error => console.error("Erro ao buscar dados do time:", error));
+    });
   </script>
 </body>
 </html>
