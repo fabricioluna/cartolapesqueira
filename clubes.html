@@ -5,31 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clubes - Liga Pesqueira Pro</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; font-size: 14px; }
-    th { background-color: #f0f0f0; }
-    td img { width: 30px; vertical-align: middle; margin-right: 10px; }
-  </style>
 </head>
 <body>
   <div id="menu"></div>
 
   <main class="container">
     <h1>Clubes Participantes</h1>
-    <table id="clubes-tabela">
-      <thead>
-        <tr>
-          <th>Posição</th>
-          <th>Time</th>
-          <th>Técnico</th>
-          <th>Patrimônio</th>
-          <th>Pontos da Rodada</th>
-          <th>Pontuação Geral</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <ul id="clubes-lista" class="clubes-lista"></ul>
   </main>
 
   <script>
@@ -50,37 +32,18 @@
       5249257, 19415623, 1567740, 29174951, 28912126
     ];
 
-    const times = [];
+    const container = document.getElementById("clubes-lista");
 
     Promise.all(ids.map(id =>
       fetch(`https://cartola-api-oficial.vercel.app/api/cartola-time/${id}`)
         .then(res => res.json())
         .then(data => {
-          times.push({
-            nome: data.nome,
-            tecnico: data.nome_cartola,
-            pontos_rodada: data.pontos,
-            pontos_total: data.pontos_campeonato,
-            patrimonio: data.patrimonio
-          });
+          const item = document.createElement("li");
+          item.innerHTML = `<strong>${data.nome}</strong> — Técnico: ${data.nome_cartola}`;
+          container.appendChild(item);
         })
-    )).then(() => {
-      times.sort((a, b) => b.pontos_total - a.pontos_total);
-
-      const tbody = document.querySelector("#clubes-tabela tbody");
-      times.forEach((time, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${index + 1}</td>
-          <td><img src="images/escudopadrao.png" alt="Escudo">${time.nome}</td>
-          <td>${time.tecnico}</td>
-          <td>C$ ${time.patrimonio.toFixed(2)}</td>
-          <td>${time.pontos_rodada.toFixed(2)}</td>
-          <td>${time.pontos_total.toFixed(2)}</td>
-        `;
-        tbody.appendChild(row);
-      });
-    });
+        .catch(err => console.error("Erro ao carregar time", id, err))
+    ));
   </script>
 </body>
 </html>
