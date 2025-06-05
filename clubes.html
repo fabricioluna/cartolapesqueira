@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,23 +6,10 @@
   <title>Clubes - Liga Pesqueira Pro</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .card {
-      width: 250px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 16px;
-      text-align: center;
-    }
-    .card img {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-    .card h3 { margin: 10px 0 5px; }
-    .card p { margin: 4px 0; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; font-size: 14px; }
+    th { background-color: #f0f0f0; }
+    td img { width: 30px; vertical-align: middle; margin-right: 10px; }
   </style>
 </head>
 <body>
@@ -31,11 +17,22 @@
 
   <main class="container">
     <h1>Clubes Participantes</h1>
-    <div id="clubes-container" class="grid"></div>
+    <table id="clubes-tabela">
+      <thead>
+        <tr>
+          <th>Posição</th>
+          <th>Time</th>
+          <th>Técnico</th>
+          <th>Patrimônio</th>
+          <th>Pontos da Rodada</th>
+          <th>Pontuação Geral</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </main>
 
   <script>
-    // Carrega o menu
     fetch("header.html")
       .then(res => res.text())
       .then(data => {
@@ -53,38 +50,35 @@
       5249257, 19415623, 1567740, 29174951, 28912126
     ];
 
-    const container = document.getElementById("clubes-container");
     const times = [];
 
     Promise.all(ids.map(id =>
-      fetch(`https://api.cartola.globo.com/time/id/${id}`)
+      fetch(`https://cartola-api-oficial.vercel.app/api/cartola-time/${id}`)
         .then(res => res.json())
         .then(data => {
           times.push({
             nome: data.nome,
             tecnico: data.nome_cartola,
-            escudo: data.escudo_url_60x60 || data.escudo_url,
             pontos_rodada: data.pontos,
-            pontos_total: data.pontos_campeonato || 0,
-            patrimonio: data.patrimonio,
-            link: `https://cartola.globo.com/#!/time/${id}`
+            pontos_total: data.pontos_campeonato,
+            patrimonio: data.patrimonio
           });
         })
-        .catch(err => console.error("Erro no time ID", id, err))
     )).then(() => {
       times.sort((a, b) => b.pontos_total - a.pontos_total);
-      times.forEach(time => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${time.escudo}" alt="Escudo de ${time.nome}" onerror="this.onerror=null; this.src='https://placehold.co/70x70?text=Escudo'">
-          <h3><a href="${time.link}" target="_blank">${time.nome}</a></h3>
-          <p><strong>Técnico:</strong> ${time.tecnico}</p>
-          <p><strong>Pontos da Rodada:</strong> ${time.pontos_rodada.toFixed(2)}</p>
-          <p><strong>Total:</strong> ${time.pontos_total.toFixed(2)}</p>
-          <p><strong>Patrimônio:</strong> C$ ${time.patrimonio.toFixed(2)}</p>
+
+      const tbody = document.querySelector("#clubes-tabela tbody");
+      times.forEach((time, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td><img src="images/escudopadrao.png" alt="Escudo">${time.nome}</td>
+          <td>${time.tecnico}</td>
+          <td>C$ ${time.patrimonio.toFixed(2)}</td>
+          <td>${time.pontos_rodada.toFixed(2)}</td>
+          <td>${time.pontos_total.toFixed(2)}</td>
         `;
-        container.appendChild(card);
+        tbody.appendChild(row);
       });
     });
   </script>
